@@ -1,0 +1,124 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navbar') %>
+
+<div class="container">
+    
+    <div class="row mt-5">
+        <div class="col lg-4">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h5 class="card-title">Jumlah Motor</h5>
+                </div>
+                <div class="card-body">
+                    <% ken.forEach((row,index) => { %>
+                        <% if(row._id  === "motor") { %>
+                            <center><h4><%= row.jenis_kendaraan %> </h4></center>
+                        <% }  %> 
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <div class="col lg-4">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h5 class="card-title">Jumlah Mobil</h5>
+                </div>
+                <div class="card-body">
+                    <% ken.forEach((row,index) => { %>
+                        <% if(row._id  === "mobil") { %>
+                            <center><h4><%= row.jenis_kendaraan %> </h4></center>
+                        <% }  %> 
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <div class="col lg-4">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h5 class="card-title">Jumlah Lainnya</h5>
+                </div>
+                <div class="card-body">
+                    <center><h4>0</h4></center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col lg-6">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h5 class="card-title">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>Daftar Kendaraan</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-right">Terisi : 1</p>
+                            </div>
+                        </div>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table id="kendaraan" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Kode</th>
+                                <th>Plat Nomor</th>
+                                <th>Jenis</th>
+                                <th>Merk</th>
+                                <th>Jam Masuk</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>AB123</td>
+                                <td>B 456 AJ</td>
+                                <td>motor</td>
+                                <td>honda</td>
+                                <td>08:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col lg-6">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h5 class="card-title">History</h5>
+                </div>
+                <div class="card-body">
+                    <table id="history" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Kode</th>
+                                <th>Plat Nomor</th>
+                                <th>Jenis</th>
+                                <th>Merk</th>
+                                <th>Jam Masuk</th>
+                                <th>Jam Keluar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>AB123</td>
+                                <td>B 456 AJ</td>
+                                <td>motor</td>
+                                <td>honda</td>
+                                <td>08:00</td>
+                                <td>17:00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layouts/footer') %>

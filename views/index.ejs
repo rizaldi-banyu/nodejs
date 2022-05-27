@@ -1,0 +1,117 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navbar') %>
+
+<div class="container">
+    <% if (message) { %> 
+        <div class="alert alert-success alert-dismissible fade show alert<%= message.type %> mt-5" role="alert">
+            <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Close"></button>
+            <strong><%= message.message %> </strong>
+        </div>
+        
+    <% } %> 
+
+    <div class="row">
+        <div class="col-lg-6 mt-3">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h5 class="card-title">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <p>Masuk Parkir</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <p class="text-right">Empty : 155</p>
+                            </div>
+                        </div>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form action="/" method="post" id="add-form">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Merk Kendaraan</label>
+                                    <input type="text" name="merk_kendaraan" class="form-control">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Plat Nomor</label>
+                                    <input type="text" name="plat_nomor" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label class="form-label">Jenis Kendaraan</label>
+                                <input type="text" name="jenis_kendaraan" class="form-control" >
+                            </div>
+                        </div>
+                        <button type="submit" class="form-control btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 mt-5">
+            <div class="card">
+                <div class="card-header bg-dark text-light">
+                    <h5 class="card-title">
+                        <div class="col-lg-6">
+                            <p>Keluar Parkir</p>
+                        </div>
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="mb-3">
+                            <center><label class="form-label">Masukan Kode</label></center>
+                            <input type="email" class="form-control" id="exampleInputEmail1">
+                        </div>
+                        <button type="submit" class="form-control btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 mt-5">
+        <div class="card">
+            <div class="card-header bg-dark text-light">
+                <h5 class="card-title">Daftar Kendaraan</h5>
+            </div>
+            <div class="card-body">
+
+                <table id="kendaraan" class="display" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Kode</th>
+                            <th>Plat Nomor</th>
+                            <th>Jenis</th>
+                            <th>Merk</th>
+                            <th>Jam Masuk</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% pengguna.forEach((row,index) => { %>
+                            <tr>
+                                <td><%= index %> </td>
+                                <td></td>
+                                <td><%= row.plat_nomor %> </td>
+                                <td><%= row.jenis_kendaraan %> </td>
+                                <td><%= row.merk_kendaraan %> </td>
+                                <td><%= new Date(row.created).toLocaleString('en', {timeZone: 'asia/jakarta'}); %></td>
+                                <td>
+                                    
+                                    <a href="/edit_pengguna/<%= row._id %>" class="text-danger"><i class="fas fa-fw fa-edit"></i></a>
+                                    <a href="" class="text-danger"><i class="fas fa-fw fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('layouts/footer') %>

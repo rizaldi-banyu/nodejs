@@ -1,0 +1,32 @@
+<%- include('layouts/header') %>
+<%- include('layouts/navbar') %>
+
+<div class="container">
+
+    <div class="card mt-5">
+        <div class="card-header bg-dark text-light">
+            <h5 class="card-title">
+                Edit Kendaraan (<%= pengguna.name %> )
+            </h5>
+        </div>
+        <div class="card-body">
+            <form action="/update_pengguna/<%= pengguna._id %> " method="post" id="add-form">
+                <div class="mb-3">
+                    <label class="form-label">Merk Kendaraan</label>
+                    <input type="text" name="merk_kendaraan" value="<%= pengguna.merk_kendaraan %>" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Plat Nomor</label>
+                    <input type="text" name="plat_nomor" value="<%= pengguna.plat_nomor %>" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Jenis Kendaraan</label>
+                    <input type="tel" name="jenis_kendaraan" value="<%= pengguna.jenis_kendaraan %>" class="form-control" required>
+                </div>
+                <button type="submit" class="form-control btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('layouts/footer') %>
