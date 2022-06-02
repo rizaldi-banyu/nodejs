@@ -12,6 +12,9 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    jenis_kelamin: {
+        type: String,
+    },
     created: {
         type: Date,
         required: true,

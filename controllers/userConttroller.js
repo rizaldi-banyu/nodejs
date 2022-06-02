@@ -17,10 +17,13 @@ const add_user = (req,res,next) => {
 
     User.init()
     
+    // console.log({jenis_kelamin: req.body.jenis_kelamin});
+
     const user = new User({
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
+        jenis_kelamin: req.body.jenis_kelamin,
     });
     user.save((err) => {
         if(err){
