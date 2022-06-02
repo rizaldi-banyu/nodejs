@@ -1,158 +1,34 @@
 const express = require("express");
 const router = express.Router();
-const User = require('../models/users');
-const Pengguna = require('../models/pengguna');
+const {index, index1,edit_pengguna,ken } = require('../controllers/penggunaController');
+const {user,add_user,add_user1,edit_user } = require("../controllers/userConttroller");
+
 
 /* pengguna */
     // get all pengguna
-    router.get('/', (req,res) => {
-        Pengguna.find().exec((err, pengguna) =>{
-            if (err) {
-                res.json({ message: err.message});
-            } else {
-                res.render('index', {
-                    title: 'Home',
-                    pengguna: pengguna
-                })
-            }
-        });
-
-    });
+    router.get('/', index);
 
     // insert pengguna on database
-    router.post('/', (req,res) => {
-        Pengguna.init()
-
-        const pengguna = new Pengguna({
-            merk_kendaraan: req.body.merk_kendaraan,
-            plat_nomor: req.body.plat_nomor,
-            jenis_kendaraan: req.body.jenis_kendaraan,
-        });
-        pengguna.save((err) => {
-            if(err){
-                res.json({message: err.message, type: 'danger'});
-            }else{
-                req.session.message = {
-                    type: 'success',
-                    message: 'Pengguna added sucessfull'
-                }
-                res.redirect('/');
-            }
-        });
-    });
-
-    router.get('/kendaraan',(req,res) =>{
-        // Pengguna.countDocuments({ jenis_kendaraan: 'motor'}, function (err, motor) {
-        //     if (err) {
-        //         res.json({ message: err.message});
-        //     } else {
-        //         res.render('kendaraan', {
-        //             title: 'Home',
-        //             motor: motor
-        //         })
-        //     }
-        // });
-        Pengguna.aggregate([
-            { $group : { _id : '$jenis_kendaraan', jenis_kendaraan : { $sum : 1 } } }
-        ], function (err, ken) {
-                if (err) {
-                    res.json({ message: err.message});
-                } else {
-                    res.render('kendaraan', {
-                        title: 'Home',
-                        ken: ken
-                    })
-                }
-            
-        });
-    });
-
+    router.post('/', index1);
 
     // edit pengguna
-    router.get('/edit_pengguna/:id',(req,res) =>{
-        let id = req.params.id;
-        Pengguna.findById(id, (err, pengguna) =>{
-            if (err) {
-                res.redirect('/')
-            } else {
-                if (pengguna == null) {
-                    res.redirect('/')
-                } else {
-                    res.render('edit_pengguna', {
-                        title: "Edit Kendaraan",
-                        pengguna: pengguna,
-                    });
-                }
-            }
-        });
-    });
-
-
-
+    router.get('/edit_pengguna/:id', edit_pengguna);
 
 /* user */
     // get all user
-    router.get('/user', (req,res) => {
-        User.find().exec((err, users) =>{
-            if (err) {
-                res.json({ message: err.message});
-            } else {
-                res.render('user/master', {
-                    title: 'Users',
-                    users: users
-                })
-            }
-        });
-    });
+    router.get('/user', user);
 
     // insert user on database
-    router.post('/add_user',(req,res,next) => {
+    router.post('/add_user',add_user);
 
-        User.init()
-
-        const user = new User({
-            name: req.body.name,
-            email: req.body.email,
-            phone: req.body.phone,
-        });
-        user.save((err) => {
-            if(err){
-                res.json({message: err.message, type: 'danger'});
-            }else{
-                req.session.message = {
-                    type: 'success',
-                    message: 'User added sucessfull'
-                }
-                res.redirect('/user');
-            }
-        });
-    });
-
-    router.get('/add_user', (req,res) => {
-        res.render("user/add_user", { title: "Add User"});
-    });
+    router.get('/add_user', add_user1);
 
     // edit user
-    router.get('/edit_user/:id',(req,res) =>{
-        let id = req.params.id;
-        User.findById(id, (err, user) =>{
-            if (err) {
-                res.redirect('/user')
-            } else {
-                if (user == null) {
-                    res.redirect('/user')
-                } else {
-                    res.render('user/edit_user', {
-                        title: "Edit User",
-                        user: user,
-                    });
-                }
-            }
-        });
-    });
+    router.get('/edit_user/:id', edit_user);
 
-router.get('/kendaraan', (req,res) => {
-    res.render("kendaraan", { title: "Daftar Kendaraan"});
-});
+/* kendaraan */
+    // router.get('/count_kendaraan', count_kendaraan);
+
+    router.get('/kendaraan', ken);
 
 module.exports = router;

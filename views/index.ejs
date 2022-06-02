@@ -102,8 +102,7 @@
                                 <td><%= new Date(row.created).toLocaleString('en', {timeZone: 'asia/jakarta'}); %></td>
                                 <td>
                                     
-                                    <a href="/edit_pengguna/<%= row._id %>" class="text-danger"><i class="fas fa-fw fa-edit"></i></a>
-                                    <a href="" class="text-danger"><i class="fas fa-fw fa-trash"></i></a>
+                                    <a href="/edit_pengguna/<%= row._id %>" class="text-danger">Edit <i class="fas fa-fw fa-edit"></i></a>
                                 </td>
                             </tr>
                         <% }) %>
