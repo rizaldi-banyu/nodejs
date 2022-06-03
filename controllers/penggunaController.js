@@ -78,11 +78,25 @@ const ken = (req, res) => {
 }
 
 
-
+const delete_kendaraan = (req, res) => {
+    let id  = req.params.id;
+    Pengguna.findByIdAndRemove(id, (err, result) => {
+        if (err) {
+            res.json({message: err.message});
+        }else {
+            req.session.message = {
+                type: 'info',
+                message: 'delete'
+            };
+            res.redirect('/');
+        }
+    })
+}
 
 module.exports =  {
     index,
     index1,
     edit_pengguna,
-    ken
+    ken,
+    delete_kendaraan
 };

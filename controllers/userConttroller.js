@@ -60,9 +60,25 @@ const edit_user = (req,res) =>{
     });
 }
 
+const delete_user = (req,res) => {
+    let id  = req.params.id;
+    User.findByIdAndRemove(id, (err, result) => {
+        if (err) {
+            res.json({message: err.message});
+        }else {
+            req.session.message = {
+                type: 'info',
+                message: 'user delete'
+            };
+            res.redirect('/user');
+        }
+    })
+}
+
 module.exports =  {
     user,
     add_user,
     add_user1,
-    edit_user
+    edit_user,
+    delete_user
 };

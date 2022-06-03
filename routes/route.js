@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const {index, index1,edit_pengguna,ken } = require('../controllers/penggunaController');
-const {user,add_user,add_user1,edit_user } = require("../controllers/userConttroller");
+const {index, index1,edit_pengguna,ken,delete_kendaraan } = require('../controllers/penggunaController');
+const {user,add_user,add_user1,edit_user,delete_user } = require("../controllers/userConttroller");
 
 
 /* pengguna */
@@ -14,6 +14,9 @@ const {user,add_user,add_user1,edit_user } = require("../controllers/userConttro
     // edit pengguna
     router.get('/edit_pengguna/:id', edit_pengguna);
 
+    // delete
+    router.get('/delete_pengguna/:id', delete_kendaraan);
+
 /* user */
     // get all user
     router.get('/user', user);
@@ -25,6 +28,9 @@ const {user,add_user,add_user1,edit_user } = require("../controllers/userConttro
 
     // edit user
     router.get('/edit_user/:id', edit_user);
+
+    // delete user
+    router.get('/delete_user/:id', delete_user);
 
 /* kendaraan */
     // router.get('/count_kendaraan', count_kendaraan);
